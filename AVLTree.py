@@ -17,3 +17,13 @@ class Node:
 class AVLTree:
     def __init__(self):
         self.root = None
+        self.current = None
+
+    def build(self, filename):
+        file = open(filename, 'r')
+        for line in file:
+            print(line)
+        file.close()
+
+a = AVLTree()
+a.build("data.txt")
