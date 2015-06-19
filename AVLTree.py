@@ -15,8 +15,8 @@ class Node:
 
 class AVLTree:
     def __init__(self):
-        self.root = ''
-        self.current = ''
+        self.root = None
+        self.current = self.root
 
     def build(self, filename):
         file = open(filename, 'r')
@@ -29,16 +29,43 @@ class AVLTree:
                 if line[i] == ' ' and node.id == '':
                     node.id = line[0:i]
                     place_holder = i + 1
-
                 if line[i] == ' ' and not (node.id == ''):
                     node.data1 = line[place_holder:i]
                     node.data2 = line[i + 1:len(line) - 1]
 
-            # set first node to the root
-            if self.root == '':
-                self.root = node
-
+            a = 1
+            self.insert(node)
         file.close()
+
+    def insert(self, node):
+        self.current = self.root
+        while True:
+            # First node will be set to root
+            if self.root is None:
+                self.root = node
+                break
+
+            # null condition left
+            if self.current.id > node.id and self.current.leftChild is None:
+                self.current.leftChild = node
+                node.parent = self.current
+                break
+
+            # null condition right
+            if self.current.id < node.id and self.current.rightChild is None:
+                self.current.rightChild = node
+                node.parent = self.current
+                break
+
+            # traversal cases
+            else:
+                if self.current.id < node.id:
+                    self.current = self.current.rightChild
+                if self.current.id > node.id:
+                    self.current = self.current.leftChild
+
+
+
 # run
 a = AVLTree()
 a.build("SuperImportantData.txt")
