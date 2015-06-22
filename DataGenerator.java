@@ -16,6 +16,7 @@ public class DataGenerator {
     public static void main(String[] args) throws FileNotFoundException, IOException {
         File file = new File("SuperImportantData.txt");
         Random rand = new Random();
+
         //number of lines in the file
         int NumberOfEntries = rand.nextInt(100) + 10;
 
@@ -28,15 +29,20 @@ public class DataGenerator {
             char[] letArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
             
             String line = "";
+            String line2 = "";
             //loops for each data entry name
             while (dataEntryLength > 0) {
                 int randLetter = rand.nextInt(25);
                 line += letArr[randLetter];
+
+                int anotherRandLetter = rand.nextInt(25);
+                line2 += letArr[anotherRandLetter];
+
                 dataEntryLength--;
             }
-            int data1 = rand.nextInt(900000);
-            int data2 = rand.nextInt(900000);
-            pw.println(line + " " + data1 + " " + data2);
+
+            int id = rand.nextInt(900000);
+            pw.println(id + " " + line + " " + line2);
             NumberOfEntries--;
         }
         pw.close();
