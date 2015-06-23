@@ -27,7 +27,8 @@ class AVLTree:
             place_holder = 0
             for i in range(len(line)):
                 if line[i] == ' ' and node.id == 0:
-                    node.id = line[0:i]
+                    tmp = line[0:i]
+                    node.id = int(tmp)
                     place_holder = i + 1
                 if line[i] == ' ' and not (node.id == 0):
                     node.data1 = line[place_holder:i]
